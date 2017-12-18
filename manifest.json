@@ -1,0 +1,16 @@
+{
+  "name": "Timer-Extension",
+  "description": "A timer that displays how long you have been on a page",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": { 
+    "16": "clock-16.png",
+    "48": "clock-48.png",
+    "128": "clock-128.png"
+  }
+}
