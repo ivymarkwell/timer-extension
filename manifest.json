@@ -5,12 +5,12 @@
   "manifest_version": 2,
   "app": {
     "background": {
-      "scripts": ["background.js"]
+      "scripts": ["src/js/background.js"]
     }
   },
-  "icons": { 
-    "16": "clock-16.png",
-    "48": "clock-48.png",
-    "128": "clock-128.png"
+  "icons": {
+    "16": "src/img/clock-16.png",
+    "48": "src/img/clock-48.png",
+    "128": "src/img/clock-128.png"
   }
 }
