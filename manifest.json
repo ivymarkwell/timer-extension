@@ -12,5 +12,13 @@
     "16": "src/img/clock-16.png",
     "48": "src/img/clock-48.png",
     "128": "src/img/clock-128.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "background": {
+    "scripts": ["src/js/background.js"],
+    "persistent": true
   }
 }
