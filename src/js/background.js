@@ -1,45 +1,37 @@
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    url = changeInfo.url
+function updateTime() {
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+        if (tabs[0]) {
+            var pathArray = tabs[0].url.split( '/' );
+            var protocol = pathArray[0];
+            var host = pathArray[2];
+            url = protocol + '//' + host;
+        }
+        else {
+            url = null
+        };
+    });
 
-    if (localStorage.getItem(url) != null) {
-        pageTime = localStorage.getItem(url).split(",");
+    if (url && localStorage.getItem(url) != null) {
+        startDate = new Date(localStorage.getItem(url));
     }
     else {
-        pageTime = null
+        startDate = new Date();
     };
-});
 
-function updateTime() {
     timeNow = new Date();
-    startDate = new Date();
-    timeSpent = 0;
-
-    if (typeof(pageTime) != "undefined" && pageTime != null) {
-        startDate = new Date(pageTime[0]);
-        timeSpent = pageTime[1];
-    };
-
-    timeSpent = (timeNow - startDate) + timeSpent
+    timeSpent = timeNow - startDate
     elapsedTimeSeconds = Math.round(timeSpent / 1000);
-
-    console.log(timeNow, startDate, timeSpent)
 
     timeElement = document.getElementById("elapsedTime")
     if (typeof(timeElement) != "undefined" && timeElement != null) {
         var date = new Date(null);
         date.setSeconds(elapsedTimeSeconds)
         var time = date.toISOString().substr(11, 8)
-        timeElement.innerHTML = timeSpent
-        alert(timeSpent)
-    };
-
-    if (typeof(url) === "undefined") {
-        url = window.location.hostname
+        timeElement.innerHTML = time
     };
 
     // set local storage item
-    pageTime = [startDate, timeSpent]
-    localStorage.setItem(url, pageTime);
+    localStorage.setItem(url, startDate);
 };
 
 setInterval(updateTime, 100);

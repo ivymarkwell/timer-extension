@@ -16,6 +16,7 @@
     "128": "src/img/clock-128.png"
   },
   "permissions": [
+    "activeTab",
     "tabs",
     "storage"
   ],
