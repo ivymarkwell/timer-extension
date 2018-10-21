@@ -16,11 +16,12 @@
     "128": "src/img/clock-128.png"
   },
   "permissions": [
+    "activeTab",
     "tabs",
     "storage"
   ],
   "background": {
     "scripts": ["src/js/background.js"],
-    "persistent": true
+    "persistent": false
   }
 }
