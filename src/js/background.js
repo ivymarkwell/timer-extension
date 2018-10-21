@@ -35,4 +35,8 @@ function updateTime() {
     localStorage.setItem('last_visited', url);
 };
 
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    localStorage.setItem('last_visited', None);
+ });
+
 setInterval(updateTime, 100);
