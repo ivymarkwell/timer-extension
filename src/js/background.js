@@ -1,5 +1,5 @@
 function updateTime() {
-    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
         if (tabs[0]) {
             var pathArray = tabs[0].url.split( '/' );
             var protocol = pathArray[0];
@@ -11,7 +11,7 @@ function updateTime() {
         };
     });
 
-    if (url && localStorage.getItem(url) != null) {
+    if (url && localStorage.getItem(url) != null && localStorage.getItem('last_visited') == url) {
         startDate = new Date(localStorage.getItem(url));
     }
     else {
@@ -32,6 +32,7 @@ function updateTime() {
 
     // set local storage item
     localStorage.setItem(url, startDate);
+    localStorage.setItem('last_visited', url);
 };
 
 setInterval(updateTime, 100);
